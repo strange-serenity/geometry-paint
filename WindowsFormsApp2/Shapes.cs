@@ -6,7 +6,6 @@ namespace WindowsFormsApp2
     public abstract class Shape
     {
         public abstract void Draw(Graphics g);
-        public abstract double CalculateArea();
     }
 
     public class Circle : Shape
@@ -23,11 +22,6 @@ namespace WindowsFormsApp2
         public override void Draw(Graphics g)
         {
             g.DrawEllipse(Pens.Red, Center.X - Radius, Center.Y - Radius, Radius * 2, Radius * 2);
-        }
-
-        public override double CalculateArea()
-        {
-            return Math.PI * Radius * Radius;
         }
     }
 
@@ -47,11 +41,6 @@ namespace WindowsFormsApp2
         public override void Draw(Graphics g)
         {
             g.DrawRectangle(Pens.Red, Location.X, Location.Y, Width, Height);
-        }
-
-        public override double CalculateArea()
-        {
-            return Width * Height;
         }
     }
     public class Diamond : Shape
@@ -76,12 +65,7 @@ namespace WindowsFormsApp2
             points[3] = new Point(Center.X - HorizontalDiagonal / 2, Center.Y);
             g.DrawPolygon(Pens.Red, points);
         }
-
-        public override double CalculateArea()
-        {
-            return (HorizontalDiagonal * VerticalDiagonal) / 2.0;
-        }
-    }
+    } 
     public class Triangle : Shape
     {
         public int SideLength { get; set; }
@@ -97,11 +81,6 @@ namespace WindowsFormsApp2
         {
             Point[] points = GetVertices();
             g.DrawPolygon(Pens.Red, points);
-        }
-
-        public override double CalculateArea()
-        {
-            return (Math.Sqrt(3) / 4) * SideLength * SideLength;
         }
 
         private Point[] GetVertices()

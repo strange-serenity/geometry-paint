@@ -36,9 +36,29 @@ namespace WindowsFormsApp2
         {
             if (shapeList.SelectedIndex >= 0)
             {
-                Shape selectedShape = shapes[shapeList.SelectedIndex];
-                double area = selectedShape.CalculateArea();
-                MessageBox.Show($"Площа обраної фігури: {area}");
+
+                    string selectedFigure = shapeList.SelectedItem.ToString().Split()[0];
+                    if (selectedFigure == "Коло")
+                    {
+                        int radius = int.Parse(shapeList.SelectedItem.ToString().Split()[3]);
+                        MessageBox.Show($"Площа обраної фігури: {Math.PI * radius * radius}");
+                    } else if (selectedFigure == "Прямокутник")
+                    {
+                        int width = int.Parse(shapeList.SelectedItem.ToString().Split()[3]);
+                        int height = int.Parse(shapeList.SelectedItem.ToString().Split()[7]);
+                        MessageBox.Show($"Площа обраної фігури: {width * height}");
+                    }  else if (selectedFigure == "Ромб")
+                    {
+                        int horizontalDiagonal = int.Parse(shapeList.SelectedItem.ToString().Split()[3]);
+                        int verticalDiagonal = int.Parse(shapeList.SelectedItem.ToString().Split()[7]);
+                        MessageBox.Show($"Площа обраної фігури: {(horizontalDiagonal * verticalDiagonal) / 2.0}");
+
+                    } else if (selectedFigure == "Трикутник")
+                    {
+                        int length = int.Parse(shapeList.SelectedItem.ToString().Split()[3]);
+                        MessageBox.Show($"Площа обраної фігури: {(Math.Sqrt(3) / 4) * length * length}");
+                    }
+                    canvas.Invalidate();
             }
         }
 
