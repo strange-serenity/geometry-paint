@@ -22,10 +22,10 @@ namespace WindowsFormsApp2
                 shapeList.Items.Add($"Коло r = {textBoxRadius.Text}");
             } else if (radioButtonRectangle.Checked)
             {
-                shapeList.Items.Add($"Прямокутник w = {textBoxWidth.Text}, h = {textBoxHeight.Text}");
+                shapeList.Items.Add($"Прямокутник w = {textBoxWidth.Text} , h = {textBoxHeight.Text}");
             } else if (radioButtonDiamond.Checked)
             {
-                shapeList.Items.Add($"Ромб w = {textBoxWidth.Text}");
+                shapeList.Items.Add($"Ромб ver/di = {textBoxWidth.Text} , hor/di = {textBoxHeight.Text}");
             } else if (radioButtonTriangle.Checked)
             {
                 shapeList.Items.Add($"Трикутник l = {textBoxWidth.Text}");
@@ -64,24 +64,24 @@ namespace WindowsFormsApp2
                 string selectedFigure = shapeList.SelectedItem.ToString().Split()[0];
                 if (selectedFigure == "Коло")
                 {
-                    int radius = int.Parse(textBoxRadius.Text);
+                    int radius = int.Parse(shapeList.SelectedItem.ToString().Split()[3]);
                     Circle circle = new Circle(radius, position);
                     shapes.Add(circle);
                 } else if (selectedFigure == "Прямокутник")
                 {
-                    int width = int.Parse(textBoxWidth.Text);
-                    int height = int.Parse(textBoxHeight.Text);
+                    int width = int.Parse(shapeList.SelectedItem.ToString().Split()[3]);
+                    int height = int.Parse(shapeList.SelectedItem.ToString().Split()[7]);
                     Rectangle rectangle = new Rectangle(width, height, position);
                     shapes.Add(rectangle);
                 }  else if (selectedFigure == "Ромб")
                 {
-                    int horizontalDiagonal = int.Parse(textBoxWidth.Text);
-                    int verticalDiagonal = int.Parse(textBoxHeight.Text);
+                    int horizontalDiagonal = int.Parse(shapeList.SelectedItem.ToString().Split()[3]);
+                    int verticalDiagonal = int.Parse(shapeList.SelectedItem.ToString().Split()[7]);
                     Diamond diamond = new Diamond(position, horizontalDiagonal, verticalDiagonal);
                     shapes.Add(diamond);
                 } else if (selectedFigure == "Трикутник")
                 {
-                    int length = int.Parse(textBoxWidth.Text);
+                    int length = int.Parse(shapeList.SelectedItem.ToString().Split()[3]);
                     Triangle triangle = new Triangle(length, position);
                     shapes.Add(triangle);
                 }
